@@ -3,7 +3,10 @@
 APP=bin/holiday
 
 r:
-	@go run -race cmd/main.go
+	@go run -race cmd/* run
+
+t: 
+	@go run -race cmd/* run -t
 
 clean:
 	@go clean
