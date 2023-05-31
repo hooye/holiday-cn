@@ -1,4 +1,4 @@
-package obtain
+package holiday
 
 import (
 	"fmt"
@@ -6,8 +6,9 @@ import (
 	"net/http"
 )
 
-func GetData() []byte {
-	url := "https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/2023.json"
+func GetData(year string) []byte {
+
+	url := fmt.Sprintf("https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/%v.json", year)
 
 	// 创建 HTTP GET 请求
 	req, err := http.NewRequest("GET", url, nil)
