@@ -4,19 +4,40 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/hooye/holiday-cn/pkg/obtain"
+	"github.com/hooye/holiday-cn/pkg/parse"
 )
 
 var HelperPath = "./helper/test.json"
 
 func LocalTest() {
 
-	fmt.Println("localttest")
 	_, err := os.Stat(HelperPath)
 	if os.IsNotExist(err) {
 		SaveFile()
 	}
+
+	data := obtain.GetData()
+	holidays := parse.ParseJson(data)
+
+	holidaymap := make(map[string]bool)
+
+	//遍历节假日列表
+	for _, holiday := range holidays.Days {
+		// fmt.Printf("% s (% s) % v\n", holiday.Name, holiday.Date, holiday.IsOffDay)
+		holidaymap[holiday.Date] = holiday.IsOffDay
+	}
+
+	now := time.Now()
+	nowday := now.Format("2006-01-02")
+	fmt.Printf("日期:%s", nowday)
+	if holidaymap[nowday] {
+		fmt.Println("今天休息哦")
+		return
+	}
+	fmt.Println(" 上班日")
 
 }
 
