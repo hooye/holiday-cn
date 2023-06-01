@@ -6,17 +6,19 @@ import (
 	jsoniter "github.com/json-iterator/go"
 )
 
+// Holiday Days 所有数据
 type Holiday struct {
 	Name     string `json:"name"`
 	Date     string `json:"date"`
 	IsOffDay bool   `json:"isOffDay"`
 }
 
+// Holidays data 中的所有数据
 type Holidays struct {
-	// Year int       `json:"year"`
 	Days []Holiday `json:"days"`
 }
 
+// 解析获取到的 json 数据
 func ParseJson(data []byte) Holidays {
 	// 解析 JSON 数据
 	var holidays Holidays
