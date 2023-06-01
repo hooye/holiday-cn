@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func GetData(year string) []byte {
+func GetData(year int) []byte {
 
 	url := fmt.Sprintf("https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/%v.json", year)
 
